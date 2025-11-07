@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/iconimg.png" type="image/x-icon">
+  <meta name="description" content="">
+  <title>Registro de Usuario</title>
+  
+  <link rel="stylesheet" href="assets/theme/css/estilos.css" title = "Estilo Claro"> 
+  <link rel="stylesheet" href="assets/theme/css/altestilos1.css" title = "Estilo Oscuro" disabled> 
+  <link rel="stylesheet" href="assets/theme/css/altestilos2.css" title = "Estilo Neo" disabled> 
+  <link rel="stylesheet" href="assets/theme/css/altestilos3.css" title = "Estilo Sunshine" disabled> 
+  
+  <style>
+      /* Estilos para la caja de mensajes de respuesta */
+      #responseMsg {
+        margin-top: 1em;
+        padding: 0.5em;
+        display: none;
+        width: 100%;
+        max-width: 400px;
+        margin: 10px auto; 
+        box-sizing: border-box; 
+        text-align: center;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+
+      #responseMsg.success {
+        color: green;
+        background-color: #e0ffe0;
+        border: 1px solid green;
+      }
+
+      #responseMsg.error {
+        color: red;
+        background-color: #ffe0e0;
+        border: 1px solid red;
+      }
+      
+      /* Estilo para el botón de cambio de estilo (posición fija) */
+      #styleSwitcherBtn {
+          position: fixed;
+          top: 20px;
+          right: 20px; /* Ajustado a la esquina derecha para mejor visibilidad */
+          padding: 10px 15px;
+          background-color: #1c1c1c;
+          color: white;
+          border: none;
+          border-radius: 50px;
+          cursor: pointer;
+          font-weight: bold;
+          z-index: 1000;
+          transition: background-color 0.3s;
+      }
+  </style>
+
+</head>
+
+<body class="registro-body">
+
+  <button id="styleSwitcherBtn" type="button">Cargando tu Estilo...</button>
+  
+  <section id="form-registro">   
+      <div class="contenedor-principal">
+          
+          <img src="assets/images/RegIzq.png" alt="Imagen Decorativa Izquierda" class="imagen-lateral">
+
+          <div class="contenedor-registro">
+              
+              <div class="header-section">
+                  <h1>
+                      <strong>Formulario de registro</strong>
+                  </h1>
+              </div>
+
+              <div>
+                  <form action= "http://localhost:8080/CRUDBankServerSide/webresources/customer" method="POST" id="signUpForm">
+                      <div class="dragArea">
+                          <div class="bloque">
+                              <input type="text" name="tfName" id="tfName" placeholder="Nombre" value="" onblur="handleNameOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="text" name="tfLastname" id="tfLastname" placeholder="Apellido" value="" onblur="handleLastnameOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="text" name="tfMiddlelinitial" id="tfMiddlelinitial" placeholder="Inicial Primer Apellido" value="" onblur="handleInitialOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="text" name="tfStreet" id="tfStreet" placeholder="Calle" value="" onblur="handleStreetOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="text" name="tfCity" id="tfCity" placeholder="Ciudad" value="" onblur="handleCityOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="text" name="tfState" id="tfState" placeholder="País" value="" onblur="handleStateOnBlur(event);" required >
+                          </div>
+                          <div class="bloque">
+                              <input type="text" name="tfZip" id="tfZip" placeholder="Código Postal" value="" onblur="handleZipOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="tel" name="tfPhone" id="tfPhone" placeholder="Teléfono" value="" onblur="handlePhoneOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="email" name="tfEmail" id="tfEmail" placeholder="Correo electrónico" value="" onblur="handleEmailOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="password" name="tfPassword" id="tfPassword" placeholder="Contraseña" onblur="handlePasswordOnBlur(event);" required>
+                          </div>
+                          <div class="bloque">
+                              <input type="password" name="rpassword" id="rpassword" placeholder="Repetir Contraseña" onblur="handleRepeatPasswordOnBlur(event);" required>
+                          </div>
+                          
+                          <div class="registro-botones">
+                              <button type="button" class="cancelar" id="cancelBtn" onclick="redirectToIndex(event);">
+                                  Cancelar
+                              </button>
+                              <button type="reset" class="cancelar">
+                                  Borrar
+                              </button>
+                              <button type="button" class="iniciar" id="registerBtn" onclick="handleSignUpClick(event);">
+                                  Regístrate
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          
+          <img src="assets/images/RegDer.jpg" alt="Imagen Decorativa Derecha" class="imagen-lateral">
+
+      </div>
+      <div id="responseMsg"></div>
+      
+      <script type="text/javascript" src="assets/theme/js/SignUP.js"></script> 
+
+  </section>
+</body>
+</html>
