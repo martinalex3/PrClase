@@ -5,23 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="assets/images/iconimg.png" type="image/x-icon">
   <title>Iniciar Sesión</title>  
-  <link rel="stylesheet" href="assets/theme/css/estilos.css" title = "Estilo Claro"> 
-  <link rel="stylesheet" href="assets/theme/css/altestilos1.css" title = "Estilo Oscuro"> 
-  <link rel="stylesheet" href="assets/theme/css/altestilos2.css" title = "Estilo Neo"> 
-  <link rel="stylesheet" href="assets/theme/css/altestilos3.css" title = "Estilo Sunshine"> 
-
+  <link rel="stylesheet" href="assets/theme/css/estilos.css" title="Estilo Claro"> 
+  <link rel="stylesheet" href="assets/theme/css/altestilos1.css" title="Estilo Oscuro"> 
+  <link rel="stylesheet" href="assets/theme/css/altestilos2.css" title="Estilo Neo"> 
+  <link rel="stylesheet" href="assets/theme/css/altestilos3.css" title="Estilo Sunshine">
+  <script src="assets/theme/js/signin.js"></script>
+  
 </head>
-<body background="assets/images/">
-  <div class="contenedor"> <!-- Contenedor principal -->
-    <h1>Inicie Sesión</h1> <!-- Título -->
-    <form>
-      <input type="email" placeholder="Correo Electrónico" required> <!-- Campo de correo electrónico -->
-      <input type="password" placeholder="Contraseña" required> <!-- Campo de contraseña -->
-      <div class="botones"> <!-- Contenedor de botones -->
-        <button type="button" class="cancelar">Cancelar</button> <!-- Botón Cancelar -->
-        <button type="submit" class="iniciar">Iniciar Sesión</button> <!-- Botón Iniciar Sesión -->
+<body>
+  <div class="contenedor">
+    <h1>Inicie Sesión</h1>
+    <form action="http://localhost:8080/CRUDBankServerSide/webresources/customer/sigin/" method="GET" id="signInForm">
+       <!-- Campos -->
+      <input type="email" id="tfEmail" name="tfEmail" placeholder="Correo Electrónico" required>
+      <input type="password" id="tfPassword" name="tfPassword" placeholder="Contraseña" required>
+      <!-- Botones -->
+      <div class="botones">
+          <button type="button" class="cancelar" id="btnCancel" onclick="handleCancelOnClick()">Cancelar</button>
+        <button type="submit" class="iniciar" id="btSignIn" onclick="handleSignInOnClick(event);"> Iniciar Sesión</button>
       </div>
     </form>
+    <div id="responseMsg"></div>
   </div>
 </body>
 </html>
