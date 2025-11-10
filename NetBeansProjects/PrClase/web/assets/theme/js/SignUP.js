@@ -1,7 +1,6 @@
-
 /**
  * Constructor del objeto Customer, que define la estructura esperada por el servidor
- * y utilizada para la deserialización XML.
+ * y utilizada para la deserialización XML. 
  */
 function Customer( id,
                     firstName,
@@ -51,25 +50,41 @@ function ServerSuccess500Error(message) {
 function sendRequestAndProcessResponse() {
     const signUpForm = document.getElementById("signUpForm");
     
-    // 1. Recolección de datos
-    const valueEmail = document.getElementById("tfEmail").value.trim();
-    const valuePassword = document.getElementById("tfPassword").value.trim();
-    sessionStorage.setItem('customer', valueEmail);
-    sessionStorage.setItem('storedPassword', valuePassword);
+    // 1. Recolección de datos y creación del objeto Customer
+    // (Utilizando el constructor 'new Customer' siguiendo la rúbrica)
+    const customer = new Customer(
+        0, // El ID se deja en 0/null para el registro, el servidor lo asigna sólo.
+        document.getElementById("tfName").value.trim(),
+        document.getElementById("tfLastname").value.trim(),
+        document.getElementById("tfMiddlelinitial").value.trim(),
+        document.getElementById("tfStreet").value.trim(),
+        document.getElementById("tfCity").value.trim(),
+        document.getElementById("tfState").value.trim(),
+        document.getElementById("tfZip").value.trim(),
+        document.getElementById("tfPhone").value.trim(),
+        document.getElementById("tfEmail").value.trim(),
+        document.getElementById("tfPassword").value.trim()
+    );
     
-    // 2. Construcción XML
+    // **ALMACENAMIENTO DE INFORMACIÓN**
+    // Guardamos el email y la contraseña para el inicio de sesión posterior
+    // usando las propiedades del objeto 'customer'.
+    sessionStorage.setItem('customer', customer.email);
+    sessionStorage.setItem('storedPassword', customer.password); 
+    
+    // 2. Construcción XML (Usando las propiedades del objeto Customer)
     const xmlBody = `
           <customer>
-          <firstName>${document.getElementById("tfName").value.trim()}</firstName>
-          <lastName>${document.getElementById("tfLastname").value.trim()}</lastName>
-          <middleInitial>${document.getElementById("tfMiddlelinitial").value.trim()}</middleInitial>
-          <street>${document.getElementById("tfStreet").value.trim()}</street>
-          <city>${document.getElementById("tfCity").value.trim()}</city>
-          <state>${document.getElementById("tfState").value.trim()}</state>
-          <zip>${document.getElementById("tfZip").value.trim()}</zip>
-          <phone>${document.getElementById("tfPhone").value.trim()}</phone>
-          <email>${valueEmail}</email>
-          <password>${valuePassword}</password>
+          <firstName>${customer.firstName}</firstName>
+          <lastName>${customer.lastName}</lastName>
+          <middleInitial>${customer.middleInitial}</middleInitial>
+          <street>${customer.street}</street>
+          <city>${customer.city}</city>
+          <state>${customer.state}</state>
+          <zip>${customer.zip}</zip>
+          <phone>${customer.phone}</phone>
+          <email>${customer.email}</email>
+          <password>${customer.password}</password>
           </customer>`.trim();
 
     // 3. Realizamos la petición POST
@@ -82,12 +97,10 @@ function sendRequestAndProcessResponse() {
     })
     
     .then(response => {
-        // Manejo de códigos de estado HTTP (CODIGOS OK Y DE ERROR)
+        // Manejo de códigos de estado HTTP
         if (response.status >= 200 && response.status < 300) {
-            // Éxito normal
             return response.text(); 
         } else if (response.status === 500){
-            // Error personalizado para que el .catch lo detecte. (En caso de registro exitoso y salida de error 500)
             throw ServerSuccess500Error('500 - Registro completado, pero el servidor devolvió un error.');
         } else if (response.status === 404) {
             throw new Error('404 - Recurso no encontrado. Revise la ruta de la API.');
@@ -98,27 +111,21 @@ function sendRequestAndProcessResponse() {
         } else if (response.status === 409){
             throw new Error('409 - El usuario introducido ya existe.');
         } else {
-            // Solo se ejecuta si el código NO es 200-299, 500, 404, 400, 403, 409
             throw new Error('Ha ocurrido un error inesperado (Código: ' + response.status + '). Contacte al administrador.');
         }
     })
     .then(data => {
-        // Bloque de éxito estándar (código 2xx)
         handleSuccessfulRegistration(data);
     })
     .catch(error => {
-        // Manejo de errores de red o errores lanzados en el bloque .then
-        
-        // Comprobamos si es el error 500 personalizado.
+        // Manejo de error 500 simulado como éxito
         if (error.name === 'ServerSuccess500Error') {
             console.warn("Manejo Especial: Error 500 detectado como registro exitoso.");
             handleSuccessfulRegistration("Respuesta 500 asumida como éxito.");
         } else {
-            // Es un fallo real (4xx, 500 real, red)
             console.error("Fallo final en la promesa:", error); 
             const msgBox = document.getElementById("responseMsg");
             msgBox.className = 'error';
-            // Mostramos el mensaje exacto del error.
             msgBox.textContent = 'Error: ' + error.message;
             msgBox.style.display = 'block';
         }
@@ -139,7 +146,6 @@ function handleSuccessfulRegistration(data = "Datos no disponibles") {
     msgBox.textContent = 'Usuario registrado con éxito.';
     msgBox.style.display = 'block';
 
-    // Intentamos la redirección
     setTimeout(() => {
         console.log("Redirigiendo a page2.html...");
         window.location.href = 'page2.html'; 
@@ -172,7 +178,8 @@ function clearMessage() {
 }
 
 // --- VALIDACIONES POR PÉRDIDA DE FOCO (ONBLUR) ---
-// Cada campo tiene su fución asociada al id que le corresponde en el html
+// Funciones de validación para ser llamadas desde el HTML y desde handleSignUpClick.
+
 function handleNameOnBlur(event) {
     try {
         const tfName = document.getElementById("tfName"); 
@@ -180,9 +187,9 @@ function handleNameOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfName.value.trim() === "")
-            throw new Error("El campo Nombre debe estar informado.");
+            throw new Error("El campo **Nombre** debe estar informado.");
         if (!nombreRegExp.test(tfName.value.trim()))
-            throw new Error("El campo Nombre no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
+            throw new Error("El campo **Nombre** no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -196,9 +203,9 @@ function handleLastnameOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfSurname.value.trim() === "")
-            throw new Error("El campo Apellido debe estar informado.");
+            throw new Error("El campo **Apellido** debe estar informado.");
         if (!apellidoRegExp.test(tfSurname.value.trim()))
-            throw new Error("El campo Apellido no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
+            throw new Error("El campo **Apellido** no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -212,9 +219,9 @@ function handleInitialOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfInicial.value.trim() === "")
-            throw new Error("El campo Inicial Primer Apellido debe estar informado.");
+            throw new Error("El campo **Inicial Primer Apellido** debe estar informado.");
         if (!inicialRegExp.test(tfInicial.value.trim()))
-            throw new Error("La inicial debe ser una o dos letras/puntos.");
+            throw new Error("La **inicial** debe ser una o dos letras/puntos.");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -228,9 +235,9 @@ function handleStreetOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfCalle.value.trim() === "")
-            throw new Error("El campo Calle debe estar informado.");
+            throw new Error("El campo **Calle** debe estar informado.");
         if (!calleRegExp.test(tfCalle.value.trim()))
-            throw new Error("El campo Calle no tiene un formato válido (2-255 caracteres).");
+            throw new Error("El campo **Calle** no tiene un formato válido (2-255 caracteres).");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -244,9 +251,9 @@ function handleCityOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfCiudad.value.trim() === "")
-            throw new Error("El campo Ciudad debe estar informado.");
+            throw new Error("El campo **Ciudad** debe estar informado.");
         if (!ciudadRegExp.test(tfCiudad.value.trim()))
-            throw new Error("El campo Ciudad no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
+            throw new Error("El campo **Ciudad** no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -260,9 +267,9 @@ function handleStateOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfPais.value.trim() === "")
-            throw new Error("El campo País debe estar informado.");
+            throw new Error("El campo **País** debe estar informado.");
         if (!paisRegExp.test(tfPais.value.trim()))
-            throw new Error("El campo País no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
+            throw new Error("El campo **País** no tiene un formato válido (solo letras y espacios, 2-255 caracteres).");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -276,9 +283,9 @@ function handleZipOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfCodpostal.value.trim() === "")
-            throw new Error("El campo Código Postal debe estar informado.");
+            throw new Error("El campo **Código Postal** debe estar informado.");
         if (!codpostalRegExp.test(tfCodpostal.value.trim()))
-            throw new Error("El campo Código Postal no tiene un formato válido (mínimo 3 caracteres).");
+            throw new Error("El campo **Código Postal** no tiene un formato válido (mínimo 3 caracteres).");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -292,9 +299,9 @@ function handlePhoneOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfTelf.value.trim() === "")
-            throw new Error("El campo Teléfono debe estar informado.");
+            throw new Error("El campo **Teléfono** debe estar informado.");
         if (!telfRegExp.test(tfTelf.value.trim()))
-            throw new Error("El Teléfono debe ser de exactamente 9 dígitos.");
+            throw new Error("El **Teléfono** debe ser de exactamente 9 dígitos.");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -308,9 +315,9 @@ function handleEmailOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfEmail.value.trim() === "")
-            throw new Error("El campo Correo Electrónico debe estar informado.");
+            throw new Error("El campo **Correo Electrónico** debe estar informado.");
         if (!emailRegExp.test(tfEmail.value.trim()))
-            throw new Error("El Correo Electrónico no tiene un formato válido.");
+            throw new Error("El **Correo Electrónico** no tiene un formato válido.");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -324,9 +331,10 @@ function handlePasswordOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfPassword.value === "")
-            throw new Error("El campo Contraseña debe estar informado.");
+            throw new Error("El campo **Contraseña** debe estar informado.");
         if (!passwordRegExp.test(tfPassword.value))
-            throw new Error("La Contraseña no es válida: min. 8 caracteres, 1 mayús, 1 minús, 1 número, 1 car. especial.");
+            throw new Error("La **Contraseña** no es válida: min. 8 caracteres, 1 mayús, 1 minús, 1 número, 1 car. especial.");
+        // Validamos la repetición para actualizar el mensaje de error si aplica.
         handleRepeatPasswordOnBlur({ preventDefault: () => {}, stopPropagation: () => {} });
         return true; 
     } catch (error) { 
@@ -341,9 +349,9 @@ function handleRepeatPasswordOnBlur(event) {
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfRPassword.value === "")
-            throw new Error("Debe repetir la contraseña.");
+            throw new Error("Debe **repetir la contraseña**.");
         if (tfPassword.value !== tfRPassword.value)
-            throw new Error("Las contraseñas no coinciden.");
+            throw new Error("Las **contraseñas no coinciden**.");
         return true; 
     } catch (error) { 
         displayError(error.message); 
@@ -353,30 +361,36 @@ function handleRepeatPasswordOnBlur(event) {
 
 // --- VALIDACIÓN Y ENVÍO DEL FORMULARIO ---
 
+/**
+ * Ejecuta todas las validaciones y, si todas son correctas, realiza la petición.
+ * @param {Event} event - El evento de clic. 
+ */
 function handleSignUpClick(event) {
     event.preventDefault();
     event.stopPropagation();
     clearMessage(); 
-    let isValid = true;
-    // Ejecutamos TODAS las validaciones
-    // Nota: La ejecución en cadena (isValid = isValid && ...) garantiza que 
-    // todas las funciones de validación se llamen, y si alguna falla, isValid 
-    // será false por lo que mostrará un mensaje de error.
-    isValid = isValid && handleNameOnBlur(event);
-    isValid = isValid && handleLastnameOnBlur(event);
-    isValid = isValid && handleInitialOnBlur(event);
-    isValid = isValid && handleStreetOnBlur(event);
-    isValid = isValid && handleCityOnBlur(event);
-    isValid = isValid && handleStateOnBlur(event);
-    isValid = isValid && handleZipOnBlur(event);
-    isValid = isValid && handlePhoneOnBlur(event);
-    isValid = isValid && handleEmailOnBlur(event);
-    isValid = isValid && handlePasswordOnBlur(event); 
-    isValid = isValid && handleRepeatPasswordOnBlur(event); 
-    if (isValid) {
+    
+    try {
+        // Ejecutamos TODAS las validaciones encadenadas
+        if (!handleNameOnBlur(event)) throw new Error("Error en el campo Nombre.");
+        if (!handleLastnameOnBlur(event)) throw new Error("Error en el campo Apellido.");
+        if (!handleInitialOnBlur(event)) throw new Error("Error en el campo Inicial.");
+        if (!handleStreetOnBlur(event)) throw new Error("Error en el campo Calle.");
+        if (!handleCityOnBlur(event)) throw new Error("Error en el campo Ciudad.");
+        if (!handleStateOnBlur(event)) throw new Error("Error en el campo País.");
+        if (!handleZipOnBlur(event)) throw new Error("Error en el campo Código Postal.");
+        if (!handlePhoneOnBlur(event)) throw new Error("Error en el campo Teléfono.");
+        if (!handleEmailOnBlur(event)) throw new Error("Error en el campo Correo Electrónico.");
+        if (!handlePasswordOnBlur(event)) throw new Error("Error en la Contraseña."); 
+        // Se llama explícitamente de nuevo por si solo se pulsó el botón de registro
+        if (!handleRepeatPasswordOnBlur(event)) throw new Error("Error en la repetición de Contraseña.");
+
+        // Si todas las validaciones pasan, se procede al envío
         sendRequestAndProcessResponse();
-    } else {
-        displayError("Por favor, revise y corrija todos los campos del formulario.");
+
+    } catch (validationError) {
+        // El mensaje específico del campo ya fue mostrado por la última función de validación que falló.
+        displayError("Por favor, revise y corrija todos los campos del formulario antes de continuar.");
     }
 }
 
@@ -385,73 +399,92 @@ function redirectToIndex(event) {
     window.location.href = 'index.html';
 }
 
-/* Asignamos eventos al cargar la página*/
+/* Asignamos la lógica de estilos al cargar la página.*/
 window.onload = function(){
-    // --- Event Listeners para validación ONBLUR (IDs CORREGIDOS) ---
-    document.getElementById("tfName").addEventListener("blur", handleNameOnBlur);
-    document.getElementById("tfLastname").addEventListener("blur", handleLastnameOnBlur);
-    document.getElementById("tfMiddlelinitial").addEventListener("blur", handleInitialOnBlur); 
-    document.getElementById("tfStreet").addEventListener("blur", handleStreetOnBlur);
-    document.getElementById("tfCity").addEventListener("blur", handleCityOnBlur); 
-    document.getElementById("tfState").addEventListener("blur", handleStateOnBlur); 
-    document.getElementById("tfZip").addEventListener("blur", handleZipOnBlur); 
-    document.getElementById("tfPhone").addEventListener("blur", handlePhoneOnBlur); 
-    document.getElementById("tfEmail").addEventListener("blur", handleEmailOnBlur); 
-    document.getElementById("tfPassword").addEventListener("blur", handlePasswordOnBlur); 
-    document.getElementById("rpassword").addEventListener("blur", handleRepeatPasswordOnBlur); 
-    // --- Lógica de Botón de Registro ---
-    const registerBtn = document.getElementById("registerBtn");
-    if(registerBtn) {
-        registerBtn.addEventListener("click", handleSignUpClick);
-    }
-    // --- Lógica de Estilos ---
+    
+    // Solo necesitamos llamar a loadSavedStyle al cargar la página para que aplique el estilo guardado.
     loadSavedStyle(); 
-    const styleSwitcherBtn = document.getElementById("styleSwitcherBtn");
-    if (styleSwitcherBtn) {
-        styleSwitcherBtn.addEventListener("click", switchStyle);
-    }
+
 };
 
-// --- CAMBIO DE ESTILOS ---
+/* --- CAMBIO DE ESTILOS ---
 
 /**
  * Carga el estilo guardado en localStorage o activa el Estilo Claro por defecto.
  */
 function loadSavedStyle() {
     const savedStyleTitle = localStorage.getItem('activeStyle') || "Estilo Claro";
-    const allStyles = document.querySelectorAll('link[title]'); // No hemos visto en clase "Queryselector" pero no econtraba otra manera de hacerlo. Quizás en el html con un combo en ve de un switcher y en el javascript codificar el comportamiento
+    const allStyles = document.getElementsByTagName('link'); 
     const switcherButton = document.getElementById("styleSwitcherBtn");
-    allStyles.forEach(link => {
-        link.disabled = (link.title !== savedStyleTitle);
-        if (link.title === savedStyleTitle && switcherButton) {
-            switcherButton.textContent = `Cambiar Estilo: ${savedStyleTitle}`;
+    
+    let isStyleSet = false;
+
+    // Recorre todos los elementos <link>
+    for (let i = 0; i < allStyles.length; i++) {
+        const link = allStyles[i];
+
+        // Solo procesa los que tienen atributo 'title'
+        if (link.getAttribute('title')) {
+            if (link.title === savedStyleTitle) {
+                link.disabled = false; // Habilitar el estilo guardado
+                if (switcherButton) {
+                    switcherButton.textContent = "Cambiar Estilo: " + savedStyleTitle;
+                    isStyleSet = true;
+                }
+            } else {
+                link.disabled = true; // Deshabilitar otros estilos
+            }
         }
-    });
-    if (switcherButton && switcherButton.textContent === 'Cargando tu Estilo...') {
-        switcherButton.textContent = `Cambiar Estilo: Estilo Claro`;
+    }
+    
+    // Si el botón está en el estado inicial nos aseuramos de que muestre el estilo por defecto
+    if (!isStyleSet && switcherButton && switcherButton.textContent === 'Cargando tu Estilo...') {
+        switcherButton.textContent = "Cambiar Estilo: Estilo Claro";
     }
 }
 
 /**
- * Cambia al siguiente estilo de la lista y lo guarda en localStorage 
- * (no en sessionstorage ya que este sólo guarda información de la sesión) 
- * nosotros queremos que persista la elección del usuario.
+ * Cambia al siguiente estilo de la lista y lo guarda en localStorage.
  */
 function switchStyle() {
-    const allStyles = Array.from(document.querySelectorAll('link[title]'));
+    const allStyles = document.getElementsByTagName('link');
     const switcherButton = document.getElementById("styleSwitcherBtn");
-    let activeIndex = allStyles.findIndex(s => !s.disabled);
-    const nextIndex = (activeIndex + 1) % allStyles.length; 
-    const nextStyle = allStyles[nextIndex];
-    allStyles.forEach(s => {
-        s.disabled = true;
-    });
+    
+    let styleLinks = [];
+    let activeIndex = -1;
+
+    // 1. Crear una lista de solo los links con título y encontrar el índice activo
+    for (let i = 0; i < allStyles.length; i++) {
+        const link = allStyles[i];
+        if (link.getAttribute('title')) {
+            styleLinks.push(link);
+            if (!link.disabled) {
+                activeIndex = styleLinks.length - 1;
+            }
+        }
+    }
+
+    if (styleLinks.length === 0) {
+        console.warn("No se encontraron estilos alternativos con atributo 'title'.");
+        return;
+    }
+
+    // 2. Calcular el siguiente índice
+    const nextIndex = (activeIndex + 1) % styleLinks.length;
+    const nextStyle = styleLinks[nextIndex];
+
+    // 3. Deshabilitar todos los estilos y habilitar el siguiente (usando bucle for)
+    for (let i = 0; i < styleLinks.length; i++) {
+        styleLinks[i].disabled = true;
+    }
+
     if (nextStyle) {
         nextStyle.disabled = false;
         const nextTitle = nextStyle.title;
         if (switcherButton) {
-             switcherButton.textContent = `Cambiar Estilo: ${nextTitle}`;
+             switcherButton.textContent = "Cambiar Estilo: " + nextTitle;
         }
         localStorage.setItem('activeStyle', nextTitle);
     }
 };
+
