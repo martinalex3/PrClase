@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/images/iconimg.png" type="image/x-icon">
+  <title>Página Principal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f1f3ef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ----- Barra superior ----- */
+    header {
+      width: 100%;
+      background-color: #a7ee7c;
+      display: flex;
+      justify-content: flex-end;
+      padding: 15px 40px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      align-items: center;
+      position: relative;
+      
+     /* codigo para implementar la visibilidad del usuario en el main
+    /*<span class="user-info" id="userNameDisplay"></span>
+    
+    <div class="user-actions">
+      <a href="index.html">Cerrar sesión</a>
+      <a href="link_cambiar_contraseña.html">Cambiar contraseña</a>
+    </div>
+
+<div id="responseMsg"></div>*/
+    }
+
+    header a {
+      text-decoration: none;
+      color: #1c1c1c;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: opacity 0.2s ease;
+      margin-left: 20px; /* 🔹 separación visual entre botones */
+    }
+
+    header a:hover {
+      opacity: 0.7;
+    }
+
+    /* Nombre de usuario */
+    .user-info {
+      margin-right: auto;
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #1c1c1c;
+    }
+
+    /* Contenedor de los botones de la derecha */
+    .user-actions {
+      display: flex;
+      align-items: center;
+      margin-right: -20px; /* 🔹 mueve ambos botones un poco a la izquierda */
+    }
+
+    /* ----- Contenido principal ----- */
+    main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      max-width: 800px;
+      width: 90%;
+      margin-top: 80px;
+    }
+
+    .insert {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .insert:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .insert img {
+      max-width: 150px;
+      max-height: 100px;
+      object-fit: contain;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #777;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra superior -->
+<header>
+  <span class="user-info" id="userNameDisplay"></span>
+
+  <div class="user-actions">
+    <a href="index.html">Cerrar sesión</a>
+    <a href="page3.html">Cambiar contraseña</a>
+  </div>
+</header>
+  <!-- Contenido principal -->
+  <main>
+    <div class="insert" onclick="window.location.href='https://www.marca.com'">
+      <img src="assets/images/marca.png" alt="Marca">
+    </div>
+
+    <div class="insert" onclick="window.location.href='https://elpais.com'">
+      <img src="assets/images/El_Pais.jpg" alt="El País">
+    </div>
+
+    <div class="insert" onclick="window.location.href='https://www.expansion.com'">
+      <img src="assets/images/expansion.png" alt="Expansión">
+    </div>
+
+    <div class="insert" onclick="window.location.href='https://www.elmundo.es'">
+      <img src="assets/images/el_mundo.png" alt="El Mundo">
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 PRSignUp-SignIn. Todos los derechos reservados.</p>
+    <p>Alejandro Martín, Kenneth León, David Aranda.</p>
+  </footer>
+</body>
+</html>

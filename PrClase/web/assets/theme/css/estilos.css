@@ -1,0 +1,460 @@
+/*SIGN UP PAGE CSS (DAVID)*/
+.registro-body {
+  background-color: #f1f3ef;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 20px 0;
+}
+
+.contenedor-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.contenedor-registro {
+  text-align: center;
+  background: transparent;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 40px;
+}
+
+.imagen-lateral {
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.contenedor-registro h1 {
+  color: #1c1c1c;
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.registro-botones {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 7px;
+  margin-left: 30px;
+}
+/*FIN SIGN UP PAGE CSS*/
+
+/*SIGN IN PAGE CSS (ALEX)*/
+body {
+  background-color: #f1f3ef;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.contenedor {
+  text-align: center;
+  background: transparent;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  color: #1c1c1c;
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 7px;
+  margin-left: 30px;
+}
+
+button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+button:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.cancelar {
+  background-color: gray;
+  color: #1c1c1c;
+}
+
+.iniciar {
+  background-color: #a7ee7c;
+  color: #1c1c1c;
+}
+#responseMsg {
+        margin-top: 1em;
+        padding: 0.5em;
+        display: none;
+        width: 100%;
+        max-width: 400px;
+        margin: 10px auto; 
+        box-sizing: border-box; 
+        text-align: center; /* Centrar el texto del mensaje */
+        font-weight: bold;
+        border-radius: 50px; /* Bordes redondeados */
+      }
+
+      #responseMsg.success {
+        color: green;
+        background-color: #e0ffe0;
+        border: 1px solid green;
+      }
+
+      #responseMsg.error {
+        color: red;
+        background-color: #ffe0e0;
+        border: 1px solid red;
+      }
+/*FIN SIGN IN PAGE CSS*/
+
+/*Change Password Page CSS (KENNETH)*/
+
+#btn-pagina-inicio {
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #a7ee7c;
+}
+
+#btn-cerrar-sesion {
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #ff6b6b;
+  color: white;
+}
+
+#menuuuu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f1f3ef;
+  text-align: right;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.seccion-cambio {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 200px;
+  padding-top: 200px;
+}
+
+.caja-cambio {
+  width: 50%;
+  padding: 20px;
+  background-color: #f1f3ef;
+  border-radius: 10px;
+}
+
+.caja-cambio h2 {
+  color: #1c1c1c;
+  font-size: 2em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Nuevo: Contenedor de campo con error */
+.campo-grupo {
+  margin-bottom: 15px;
+}
+
+/* Nuevo: Wrapper para input con botón de mostrar/ocultar */
+.input-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-password-wrapper input {
+  flex: 1;
+  padding-right: 50px;
+}
+
+/* Nuevo: Botón de mostrar/ocultar contraseña */
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 5px;
+  width: auto;
+  flex: none;
+  transition: transform 0.2s;
+}
+
+.toggle-password:hover {
+  transform: scale(1.1);
+}
+
+/* Nuevo: Mensajes de error */
+.error-mensaje {
+  display: none;
+  color: #d32f2f;
+  font-size: 0.85em;
+  margin-top: 5px;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+.caja-cambio input {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.caja-cambio button {
+  padding: 10px 20px;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Nuevo: Estilo mejorado para requisitos */
+.requisitos-pwd {
+  color: #787474;
+  background-color: #e8ebe6;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  font-size: 0.9em;
+  border-left: 4px solid #a7ee7c;
+}
+
+.botonespwd {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+#btn-cancelar-cambio {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: gray;
+  color: white;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#btn-limpiar-campos {
+  background-color: #2DC1D6;
+  color: white;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#btn-confirmar-cambio {
+  background-color: #a7ee7c;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.imagen-cambio {
+  width: 40%;
+  text-align: right;
+}
+
+.imagen-cambio img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ken-body {
+  background-color: #f1f3ef;
+  display: block;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.ken-body #menuuuu,
+.ken-body .caja-cambio {
+  background-color: #f1f3ef;
+}
+
+/* Nuevo: Estilos para el modal de confirmación */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-contenido h3 {
+  color: #4caf50;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.modal-contenido p {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1em;
+}
+
+.btn-modal {
+  background-color: #a7ee7c;
+  color: #1c1c1c;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-modal:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Responsividad mejorada */
+@media (max-width: 768px) {
+  .seccion-cambio {
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 100px;
+  }
+  
+  .caja-cambio {
+    width: 100%;
+  }
+  
+  .imagen-cambio {
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .botonespwd {
+    flex-direction: column;
+  }
+  
+  #menuuuu {
+    text-align: center;
+  }
+  
+  #btn-pagina-inicio,
+  #btn-cerrar-sesion {
+    margin: 5px;
+  }
+}
+
+/*FIN Change Password CSS*/
