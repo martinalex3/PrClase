@@ -1,0 +1,386 @@
+/*SIGN UP PAGE CSS (DAVID)*/
+.registro-body {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black; /* Fondo negro mate */
+  font-family: Arial, sans-serif;   /* Fuente texto */
+  color: white; /* Fuente color */
+  display: flex; /* Alineacion de contenido */
+  justify-content: center; /* Centrado */
+  align-items: center; 
+  margin: 0; 
+  padding: 20px 0; 
+}
+
+/* Contenedor principal que envuelve (IMAGEN - FORMULARIO - IMAGEN) */
+
+.contenedor-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para el conjunto */
+    padding: 20px;
+}
+
+/* Contenedor del formulario (columna central), con el mismo ancho que .contenedor */
+
+.contenedor-registro {
+  text-align: center; 
+  background: transparent; 
+  width: 100%; 
+  max-width: 400px; 
+  margin: 0 40px; /* espacio entre el formulario y las imágenes */
+}
+
+/* Estilo Imgénes */
+
+.imagen-lateral {
+    width: 250px; /* Ancho fijo  */
+    height: 350px; /* Alto fijo  */
+    object-fit: cover; /* asegura que la imagen cubra el espacio sin distorsionarse. (Stack-overflow) */
+    border: 2px solid black; /* Borde negro de 2px */
+    border-radius: 5px; /* borde redondeado */
+}
+
+/* Título (h1) del registro */
+
+.contenedor-registro h1 {
+  color: #008000; 
+  font-size: 2em; /* El tamaño de la fuente será el doble del tamaño de fuente base */
+  margin-bottom: 30px; 
+}
+
+/* Contenedor botones  */
+
+.registro-botones {
+  display: flex; /* MEJOR QUE GRID */
+  justify-content: space-between; 
+  gap: 15px; /* espacio entre botones */
+  margin-top: 7px;
+  margin-left: 30px; /* Margen adaptado al estilo del sign-in */
+}
+
+/* Colores específicos */
+
+input {
+      background-color: white; /* Blanco para el fondo de los campos del formulario */
+      color: #008000;/* Fuente texto color verde matrix */
+      font-weight: bold; 
+
+    }
+/*FIN SIGN UP PAGE CSS*/
+
+/*SIGN IN PAGE CSS (ALEX)*/
+
+body {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+  font-family: Arial, sans-serif;   
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  margin: 0; 
+}
+/* Contenedor principal */
+
+.contenedor {
+  text-align: center; 
+  background: transparent; 
+  width: 100%; 
+  max-width: 400px; 
+}
+/* Título */
+
+h1 {
+  color: #008000;
+  font-size: 2em; 
+  margin-bottom: 30px; 
+}
+/* Campos de texto */
+
+input {
+  width: 100%; 
+  padding: 15px; 
+  margin-bottom: 10px; 
+  border: none; 
+  border-radius: 50px; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+  font-size: 1em;  
+  box-sizing: border-box; 
+}
+/* Contenedor de botones */
+
+.botones {
+  display: flex; 
+  justify-content: space-between; 
+  gap: 15px; 
+  margin-top: 7px; 
+  margin-left: 30px;
+}
+/* Botones */
+
+button {
+  flex: 1; 
+  padding: 15px; 
+  border: none; 
+  border-radius: 50px; 
+  font-weight: bold; 
+  font-size: 1em; 
+  cursor: pointer; 
+}
+button:hover {
+  transform: scale(1.03); 
+  opacity: 0.9; 
+}
+/* Colores específicos */
+.cancelar {
+  background-color: gray; 
+  color: black; ; 
+}
+.iniciar {
+  background-color: #008000;
+  color: black; 
+}
+
+/*FIN SIGN UP PAGE CSS*/
+
+/*SIGN IN PAGE CSS (ALEX)*/
+
+body {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black; 
+  font-family: Arial, sans-serif;   
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  margin: 0; 
+}
+/* Contenedor principal */
+.contenedor {
+  text-align: center; 
+  background: transparent; 
+  width: 100%; 
+  max-width: 400px; 
+}
+/* Título */
+h1 {
+  color: #008000;
+  font-size: 2em; 
+  margin-bottom: 30px; 
+}
+/* Campos de texto */
+input {
+  width: 100%; 
+  padding: 15px; 
+  margin-bottom: 10px; 
+  border: none; 
+  border-radius: 50px; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+  font-size: 1em;  
+  box-sizing: border-box; 
+}
+/* Contenedor de botones */
+.botones {
+  display: flex; 
+  justify-content: space-between; 
+  gap: 15px; 
+  margin-top: 7px; 
+  margin-left: 30px;
+}
+/* Botones */
+button {
+  flex: 1; 
+  padding: 15px; 
+  border: none; 
+  border-radius: 50px; 
+  font-weight: bold; 
+  font-size: 1em; 
+  cursor: pointer; 
+}
+button:hover {
+  transform: scale(1.03); 
+  opacity: 0.9; 
+}
+/* Colores específicos */
+
+.cancelar {
+  background-color: gray; 
+  color: black; 
+}
+.iniciar {
+  background-color: #008000;
+  color: black; 
+}
+/*FIN SIGN IN PAGE CSS */
+
+/*CHANGE PASSWORD PAGE CSS (KENNETH)*/
+
+#btn-pagina-inicio {
+
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  transition: 0.8s;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #008000; 
+  color: black;
+
+}
+
+#btn-cerrar-sesion {
+
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+
+  font-size: 20px;
+  transition: 0.8s;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  background-color:  gray;
+  color: black;
+}
+
+#menuuuu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  text-align: right;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+
+.seccion-cambio {
+  margin-top: 80px; /* Ajusta según el alto de tu barra */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 200px;
+  padding-top: 200px;
+  background-color:  black;
+}
+
+.caja-cambio {
+  width: 50%;
+  padding: 20px;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.caja-cambio h2 {
+  color: #008000;
+  font-size: 2em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.caja-cambio input {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.caja-cambio button {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.caja-cambio pre {
+  color: #008000; 
+}
+
+
+.botonespwd{
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 7px;
+  margin-left: 30px;
+}
+
+#btn-cancelar-cambio {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: gray;
+  color: black;
+
+}
+
+#btn-limpiar-campos {
+  background-color: gray;
+  color: black;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#btn-confirmar-cambio {
+  background-color: #008000;
+  color: black;
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.imagen-cambio {
+  width: 40%;
+  text-align: right;
+}
+
+.imagen-cambio img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border-color: black;
+}
+
+/*FIN CHANGE PASSWORD PAGE CSS */
