@@ -102,12 +102,6 @@ function sendRequestAndProcessResponse() {
             return response.text(); 
         } else if (response.status === 500){
             throw ServerSuccess500Error('500 - Registro completado, pero el servidor devolvió un error.');
-        } else if (response.status === 404) {
-            throw new Error('404 - Recurso no encontrado. Revise la ruta de la API.');
-        } else if (response.status === 400){
-            throw new Error('400 - Solicitud incorrecta. Verifique los datos.');
-        } else if (response.status === 403){
-            throw new Error('403 - No dispone de permisos suficientes.');
         } else if (response.status === 409){
             throw new Error('409 - El usuario introducido ya existe.');
         } else {
