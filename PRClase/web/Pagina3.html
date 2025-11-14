@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario con imagen</title>
+<link rel="stylesheet" href="./assets/theme/css/estilos.css" title="Estilo base">
+<link rel="alternate stylesheet" href="./assets/theme/css/altestilos1.css" title="Tema 1">
+<link rel="alternate stylesheet" href="./assets/theme/css/altestilos2.css" title="Tema 2">
+<link rel="alternate stylesheet" href="./assets/theme/css/altestilos3.css" title="Tema 3">
+
+</head>
+<body class="ken-body">
+
+  <div id="menuuuu"> <!-- Menú de arriba con botones Pagina Inicial y de Logout -->
+    <button id="btn-pagina-inicio" type="submit">Página inicial</button>
+    <button id="btn-cerrar-sesion" type="submit">Logout</button>
+  </div>
+
+  <div class="seccion-cambio">
+    <div class="caja-cambio">
+      <h2>Cambiar contraseña</h2> <!--Titulo -->
+      <form>
+        <input type="password" placeholder="Contraseña actual" minlength="8" maxlength="10" required> <!--Campo de Contraseña actual-->
+        <input type="password" placeholder="Contraseña nueva" minlength="8" maxlength="255" required> <!--Campo de Contraseña nueva-->
+        <input type="password" placeholder="Confirmar contraseña" minlength="8" maxlength="255" required> <!--Campo de Confirmar contraseña-->
+        <pre> <!--Requisitos contraseña-->
+-<u>Requisitos contraseña:</u> 
+    · Mínimo 8 caracteres
+    · Máximo 255 caracteres
+    · Debe incluir Mayúsculas
+        </pre>
+        <div class="botonespwd">
+        <button id="btn-cancelar-cambio" type="submit" title="Redirige a página principal">Cancelar</button> <!--Botón Cancelar-->
+        <button id="btn-limpiar-campos" type="submit" title="Borra información de todos los campos">Borrar</button> <!--Botón Borrarr-->
+        <button id="btn-confirmar-cambio" type="submit" title="Realiza los cambios">Confirmar</button> <!--Botón Confirmar-->
+        </div>
+      </form>
+    </div>
+
+    <div class="imagen-cambio"> 
+      <img src="assets/images/change.jpg" alt="Imagen de cambio de contraseña">  <!--Imagen-->
+    </div>
+  </div>
+
+</body>
+</html>
