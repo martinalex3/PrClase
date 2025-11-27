@@ -66,12 +66,6 @@ function sendRequestAndProcessResponse() {
         document.getElementById("tfPassword").value.trim()
     );
     
-    // **ALMACENAMIENTO DE INFORMACIÓN**
-    // Guardamos el email y la contraseña para el inicio de sesión posterior
-    // usando las propiedades del objeto 'customer'.
-    sessionStorage.setItem('customer', customer.email);
-    sessionStorage.setItem('storedPassword', customer.password); 
-    
     // 2. Construcción XML (Usando las propiedades del objeto Customer)
     const xmlBody = `
           <customer>
@@ -102,14 +96,8 @@ function sendRequestAndProcessResponse() {
             return response.text(); 
         } else if (response.status === 500){
             throw ServerSuccess500Error('500 - Registro completado, pero el servidor devolvió un error.');
-        } else if (response.status === 404) {
-            throw new Error('404 - Recurso no encontrado. Revise la ruta de la API.');
-        } else if (response.status === 400){
-            throw new Error('400 - Solicitud incorrecta. Verifique los datos.');
         } else if (response.status === 403){
-            throw new Error('403 - No dispone de permisos suficientes.');
-        } else if (response.status === 409){
-            throw new Error('409 - El usuario introducido ya existe.');
+            throw new Error('403 - El usuario introducido ya existe.');
         } else {
             throw new Error('Ha ocurrido un error inesperado (Código: ' + response.status + '). Contacte al administrador.');
         }
@@ -279,13 +267,13 @@ function handleStateOnBlur(event) {
 function handleZipOnBlur(event) {
     try {
         const tfCodpostal = document.getElementById("tfZip"); 
-        const codpostalRegExp = /^[a-zA-Z0-9\s.,-]{3,255}$/; 
+        const codpostalRegExp = /^\d{5}$/; 
         event.preventDefault(); event.stopPropagation();
         clearMessage();
         if (tfCodpostal.value.trim() === "")
             throw new Error("El campo **Código Postal** debe estar informado.");
         if (!codpostalRegExp.test(tfCodpostal.value.trim()))
-            throw new Error("El campo **Código Postal** no tiene un formato válido (mínimo 3 caracteres).");
+            throw new Error("El campo **Código Postal** no tiene un formato válido (mínimo 3 caracteres, sólo números).");
         return true; 
     } catch (error) { 
         displayError(error.message); 

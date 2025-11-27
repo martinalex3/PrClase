@@ -8,12 +8,16 @@
   <meta name="description" content="">
   <title>Registro de Usuario</title>
   
-  <link rel="stylesheet" href="assets/theme/css/estilos.css" title = "Estilo Claro"> 
-  <link rel="stylesheet" href="assets/theme/css/altestilos1.css" title = "Estilo Oscuro" disabled> 
-  <link rel="stylesheet" href="assets/theme/css/altestilos2.css" title = "Estilo Neo" disabled> 
-  <link rel="stylesheet" href="assets/theme/css/altestilos3.css" title = "Estilo Sunshine" disabled> 
+  <link rel="stylesheet"  type ="text/css" href="assets/theme/css/estilos.css" title = "Estilo Claro"> 
+  <link rel="stylesheet" type="text/css" href="assets/theme/css/altestilos1.css" title = "Estilo Oscuro"> 
+  <link rel="stylesheet" type= "text/css" href="assets/theme/css/altestilos2.css" title = "Estilo Neo"> 
+  <link rel="stylesheet" type= "text/css" href="assets/theme/css/altestilos3.css" title = "Estilo Sunshine"> 
   
   <style>
+      /*Eval:Enlazadas las hojas de estilos, atributo disabled eliminado con ello se ha eliminado el aviso de error de codigo. 
+      Se ha intentado otyro método de inserción de hojas de estilo con @import  url("ruta de estilo") pero sólo reconocía la primer hoja importada*/
+      
+      
       /* Estilos para la caja de mensajes de respuesta */
       #responseMsg {
         margin-top: 1em;
@@ -77,7 +81,7 @@
               </div>
 
               <div>
-                  <form action= "http://localhost:8080/CRUDBankServerSide/webresources/customer" method="POST" id="signUpForm">
+                  <form action= "/CRUDBankServerSide/webresources/customer" method="POST" id="signUpForm">
                       <div class="dragArea">
                           <div class="bloque">
                               <input type="text" name="tfName" id="tfName" placeholder="Nombre" value="" onblur="handleNameOnBlur(event);" required>

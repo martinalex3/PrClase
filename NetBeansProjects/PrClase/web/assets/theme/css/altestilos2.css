@@ -61,7 +61,13 @@
   margin-top: 7px;
   margin-left: 30px; /* Margen adaptado al estilo del sign-in */
 }
-
+/*Eval: Aplicado al contenedor registro-botones posicionamiento flex y responsividad cambiando flex-direction de row a column para @media (max-width: 1024px).*/
+  @media (max-width: 1024px) {
+  .registro-botones {
+    display: flex;
+    flex-direction: column;
+   }
+  }
 /* Colores específicos */
 
 input {
